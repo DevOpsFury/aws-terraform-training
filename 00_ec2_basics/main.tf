@@ -5,43 +5,42 @@ terraform {
 }
 
 provider "aws" {
-    region = "eu-central-1"
+  region = "eu-central-1"
 }
 
 # VPC
 resource "aws_vpc" "main" {
-    cidr_block = "10.100.0.0/16"
+  cidr_block = "10.100.0.0/16"
 
-    tags {
-        Name        = "Terraform main VPC"
-    }
+  tags {
+    Name = "Terraform main VPC"
+  }
 }
 
 resource "aws_subnet" "public" {
-    vpc_id = "${aws_vpc.main.id}"
-    cidr_block = "10.100.1.0/24"
-    map_public_ip_on_launch = "true"
+  vpc_id                  = "${aws_vpc.main.id}"
+  cidr_block              = "10.100.1.0/24"
+  map_public_ip_on_launch = "true"
 
-    tags {
-        Name = "Terraform main VPC, public subnet"
-    }
+  tags {
+    Name = "Terraform main VPC, public subnet"
+  }
 }
 
 resource "aws_internet_gateway" "default" {
-    vpc_id = "${aws_vpc.main.id}"
+  vpc_id = "${aws_vpc.main.id}"
 
-    tags {
-        Name = "Terraform internet gateway"
-    }
+  tags {
+    Name = "Terraform internet gateway"
+  }
 }
 
 resource "aws_route_table" "public" {
-  vpc_id           = "${aws_vpc.main.id}"
+  vpc_id = "${aws_vpc.main.id}"
 
-    tags {
-        Name = "Public route table"
-    }
-
+  tags {
+    Name = "Public route table"
+  }
 }
 
 resource "aws_route_table_association" "public" {
@@ -56,20 +55,20 @@ resource "aws_route" "public_internet_gateway" {
 }
 
 resource "aws_security_group" "allow_ssh" {
-  name = "allow_ssh"
+  name        = "allow_ssh"
   description = "Allow inbound SSH traffic"
-  vpc_id = "${aws_vpc.main.id}"
+  vpc_id      = "${aws_vpc.main.id}"
 
   ingress {
-      from_port = 22
-      to_port = 22
-      protocol = "tcp"
-      cidr_blocks = ["0.0.0.0/0"]
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 }
 
 resource "aws_security_group" "allow_all_outbound" {
-  name = "allow_all_outbound"
+  name        = "allow_all_outbound"
   description = "Allow outbound traffic"
 
   vpc_id = "${aws_vpc.main.id}"
@@ -94,9 +93,10 @@ resource "aws_instance" "ssh_host" {
   key_name = "${aws_key_pair.admin.key_name}"
 
   subnet_id = "${aws_subnet.public.id}"
+
   vpc_security_group_ids = [
     "${aws_security_group.allow_ssh.id}",
-    "${aws_security_group.allow_all_outbound.id}"
+    "${aws_security_group.allow_all_outbound.id}",
   ]
 
   tags {
