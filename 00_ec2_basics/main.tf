@@ -100,6 +100,6 @@ resource "aws_instance" "ssh_host" {
   ]
 
   tags {
-    Name = "Terraform!"
+    Name = "SSH bastion"
   }
 }
