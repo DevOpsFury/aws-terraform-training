@@ -37,4 +37,8 @@ module "ecs-cluster" {
 }
 
 # https://github.com/anrim/terraform-aws-ecs (cluster + ALB + service definition + task)
+# https://docs.aws.amazon.com/cli/latest/reference/ecs/register-task-definition.html
+# https://medium.com/@ahmetatalay/building-highly-available-scalable-and-reliable-ecs-clusters-part-2-deploying-microservices-5eb4816b84b
+# https://github.com/TechnologyMinimalists/aws-containers-task-definitions
+# https://medium.com/boltops/gentle-introduction-to-how-aws-ecs-works-with-example-tutorial-cea3d27ce63d
 
