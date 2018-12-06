@@ -7,7 +7,7 @@ resource "aws_autoscaling_policy" "scale_up" {
 }
 
 resource "aws_autoscaling_policy" "scale_down" {
-  name                   = "scale-up"
+  name                   = "scale-down"
   scaling_adjustment     = -1
   adjustment_type        = "ChangeInCapacity"
   cooldown               = 120

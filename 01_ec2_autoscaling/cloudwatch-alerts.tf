@@ -12,7 +12,7 @@ resource "aws_cloudwatch_metric_alarm" "cpu_utilization_high" {
     AutoScalingGroupName = "${aws_autoscaling_group.application.name}"
   }
 
-  alarm_description = "CPU Utilization"
+  alarm_description = "CPU Utilization high"
   alarm_actions     = ["${aws_autoscaling_policy.scale_up.arn}"]
 }
 
@@ -30,7 +30,7 @@ resource "aws_cloudwatch_metric_alarm" "cpu_utilization_low" {
     AutoScalingGroupName = "${aws_autoscaling_group.application.name}"
   }
 
-  alarm_description = "CPU Utilization"
+  alarm_description = "CPU Utilization low"
   alarm_actions     = ["${aws_autoscaling_policy.scale_down.arn}"]
 }
 
@@ -49,7 +49,7 @@ resource "aws_cloudwatch_metric_alarm" "memory_utilization_high" {
     AutoScalingGroupName = "${aws_autoscaling_group.application.name}"
   }
 
-  alarm_description = "Memory Utilization"
+  alarm_description = "Memory Utilization high"
   alarm_actions     = ["i${aws_autoscaling_policy.scale_up.arn}"]
 }
 
@@ -67,7 +67,6 @@ resource "aws_cloudwatch_metric_alarm" "memory_utilization_low" {
     AutoScalingGroupName = "${aws_autoscaling_group.application.name}"
   }
 
-  alarm_description = "Memory Utilization"
+  alarm_description = "Memory Utilization low"
   alarm_actions     = ["i${aws_autoscaling_policy.scale_down.arn}"]
 }
-
