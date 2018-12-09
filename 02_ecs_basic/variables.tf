@@ -4,10 +4,9 @@ variable "ssh_key" {
 }
 
 variable "environment" {
-  type = "string"
+  type    = "string"
   default = "development"
 }
-
 
 # aws ec2 describe-images --region eu-central-1 --owners 099720109477 --filters "Name=name,Values=*ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*"
 //data "aws_ami" "ubuntu" {
@@ -25,3 +24,4 @@ variable "environment" {
 //
 //    owners = ["099720109477"] # 099720109477 == Canonical
 //}
+

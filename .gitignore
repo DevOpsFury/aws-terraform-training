@@ -10,3 +10,6 @@
 
 # IDE
 .idea
+
+# Python virtualenv
+venv

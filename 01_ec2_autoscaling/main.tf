@@ -90,11 +90,11 @@ resource "aws_route" "public_internet_gateway" {
 
 # Private subnets
 resource "aws_subnet" "private_a" {
-    vpc_id = "${aws_vpc.main.id}"
-    cidr_block = "10.100.10.0/24"
-    map_public_ip_on_launch = false
+  vpc_id                  = "${aws_vpc.main.id}"
+  cidr_block              = "10.100.10.0/24"
+  map_public_ip_on_launch = false
 
-    availability_zone = "eu-central-1a"
+  availability_zone = "eu-central-1a"
 
   tags {
     Name = "Terraform main VPC, private subnet zone A"
@@ -102,11 +102,11 @@ resource "aws_subnet" "private_a" {
 }
 
 resource "aws_subnet" "private_b" {
-    vpc_id = "${aws_vpc.main.id}"
-    cidr_block = "10.100.11.0/24"
-    map_public_ip_on_launch = false
+  vpc_id                  = "${aws_vpc.main.id}"
+  cidr_block              = "10.100.11.0/24"
+  map_public_ip_on_launch = false
 
-    availability_zone = "eu-central-1b"
+  availability_zone = "eu-central-1b"
 
   tags {
     Name = "Terraform main VPC, private subnet zone B"
@@ -114,11 +114,11 @@ resource "aws_subnet" "private_b" {
 }
 
 resource "aws_subnet" "private_c" {
-    vpc_id = "${aws_vpc.main.id}"
-    cidr_block = "10.100.12.0/24"
-    map_public_ip_on_launch = false
+  vpc_id                  = "${aws_vpc.main.id}"
+  cidr_block              = "10.100.12.0/24"
+  map_public_ip_on_launch = false
 
-    availability_zone = "eu-central-1c"
+  availability_zone = "eu-central-1c"
 
   tags {
     Name = "Terraform main VPC, private subnet zone C"
@@ -152,27 +152,27 @@ resource "aws_nat_gateway" "natgw_c" {
 }
 
 resource "aws_route_table" "private_a" {
-  vpc_id           = "${aws_vpc.main.id}"
+  vpc_id = "${aws_vpc.main.id}"
 
-    tags {
-        Name = "Private route table, zone A"
-    }
+  tags {
+    Name = "Private route table, zone A"
+  }
 }
 
 resource "aws_route_table" "private_b" {
-  vpc_id           = "${aws_vpc.main.id}"
+  vpc_id = "${aws_vpc.main.id}"
 
-    tags {
-        Name = "Private route table, zone B"
-    }
+  tags {
+    Name = "Private route table, zone B"
+  }
 }
 
 resource "aws_route_table" "private_c" {
-  vpc_id           = "${aws_vpc.main.id}"
+  vpc_id = "${aws_vpc.main.id}"
 
-    tags {
-        Name = "Private route table, zone C"
-    }
+  tags {
+    Name = "Private route table, zone C"
+  }
 }
 
 resource "aws_route_table_association" "private_a" {

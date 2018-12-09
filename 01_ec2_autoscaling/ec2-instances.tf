@@ -28,7 +28,7 @@ resource "aws_autoscaling_group" "application" {
   name                 = "ASG"
   launch_configuration = "${aws_launch_configuration.as_conf.name}"
 
-  vpc_zone_identifier = ["${aws_subnet.private_a.id}", "${aws_subnet.private_b.id}","${aws_subnet.private_c.id}"]
+  vpc_zone_identifier = ["${aws_subnet.private_a.id}", "${aws_subnet.private_b.id}", "${aws_subnet.private_c.id}"]
 
   min_size = "${var.min_size}"
   max_size = "${var.max_size}"

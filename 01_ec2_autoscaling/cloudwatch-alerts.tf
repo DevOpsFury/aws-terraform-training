@@ -34,7 +34,6 @@ resource "aws_cloudwatch_metric_alarm" "cpu_utilization_low" {
   alarm_actions     = ["${aws_autoscaling_policy.scale_down.arn}"]
 }
 
-
 resource "aws_cloudwatch_metric_alarm" "memory_utilization_high" {
   alarm_name          = "memory-utilization"
   comparison_operator = "GreaterThanOrEqualToThreshold"

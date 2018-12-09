@@ -3,7 +3,7 @@ module "ecs-cluster" {
   source  = "azavea/ecs-cluster/aws"
   version = "2.0.0"
 
-  vpc_id        = "${aws_vpc.main.id}"
+  vpc_id = "${aws_vpc.main.id}"
 
   instance_type = "t2.small"
   key_name      = "${aws_key_pair.admin.key_name}"
@@ -31,9 +31,9 @@ module "ecs-cluster" {
 
   private_subnet_ids = ["${aws_subnet.private_a.id}", "${aws_subnet.private_b.id}", "${aws_subnet.private_c.id}"]
 
-  project     = "Something"
-  environment = "Staging"
-  lookup_latest_ami = "true" # fails if set to false :( (bug)
+  project           = "Something"
+  environment       = "Staging"
+  lookup_latest_ami = "true"      # fails if set to false :( (bug)
 }
 
 resource "aws_security_group_rule" "container_instance_egress" {
@@ -47,11 +47,11 @@ resource "aws_security_group_rule" "container_instance_egress" {
 }
 
 resource "aws_security_group_rule" "container_instance_ingress" {
-  type = "ingress"
-  from_port = 0
-  to_port = 0
-  protocol = "-1"
-  cidr_blocks = ["0.0.0.0/0"]
+  type              = "ingress"
+  from_port         = 0
+  to_port           = 0
+  protocol          = "-1"
+  cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = "${module.ecs-cluster.container_instance_security_group_id}"
 }
 

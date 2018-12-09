@@ -11,7 +11,7 @@ resource "aws_security_group" "allow_ssh_ip" {
   }
 
   tags {
-    Name        = "Allow SSH"
+    Name = "Allow SSH"
   }
 }
 
@@ -35,6 +35,6 @@ resource "aws_security_group" "http_server_public" {
   }
 
   tags {
-    Name        = "Allow HTTP traffic"
+    Name = "Allow HTTP traffic"
   }
 }

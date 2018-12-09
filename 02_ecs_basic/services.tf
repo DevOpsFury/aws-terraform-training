@@ -54,7 +54,7 @@ resource "aws_iam_role_policy_attachment" "ecs_tasks_execution_role" {
 }
 
 module "nginx" {
-  source  = "npalm/ecs-service/aws"
+  source = "npalm/ecs-service/aws"
 
   service_name          = "nginx"
   service_desired_count = 1
@@ -69,22 +69,19 @@ module "nginx" {
 
   ecs_cluster_id = "${module.ecs-cluster.id}"
 
-
   task_definition = "${file("task-definitions/service.json")}" //"${data.template_file.nginx.rendered}"
   task_cpu        = "256"
   task_memory     = "512"
 
-//  service_launch_type = "FARGATE"
+  //  service_launch_type = "FARGATE"
 
   awsvpc_task_execution_role_arn = "${aws_iam_role.ecs_tasks_execution_role.arn}"
   awsvpc_service_security_groups = ["${aws_security_group.allow_all.id}"]
   awsvpc_service_subnetids       = ["${aws_subnet.private_a.id}", "${aws_subnet.private_b.id}", "${aws_subnet.private_c.id}"]
-
   lb_target_group = {
     container_name = "${local.container_name}"
     container_port = "${local.container_port}"
   }
-
   lb_listener = {
     port     = 80
     protocol = "HTTP"
@@ -96,9 +93,9 @@ resource "aws_cloudwatch_log_group" "nginx_log_group" {
   name = "nginx-log-group"
 
   retention_in_days = 1
-  
+
   tags {
-    Name = "nginx-log-group"
+    Name    = "nginx-log-group"
     Service = "${var.environment}-nginx"
   }
 }
