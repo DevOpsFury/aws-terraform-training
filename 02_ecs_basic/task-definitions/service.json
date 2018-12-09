@@ -1,0 +1,27 @@
+[
+  {
+    "environment": [{
+      "name": "SECRET",
+      "value": "KEY"
+    }],
+    "essential": true,
+    "memoryReservation": null,
+    "image": "nginx:latest",
+    "name": "nginx",
+    "portMappings": [
+      {
+        "hostPort": 80,
+        "protocol": "tcp",
+        "containerPort": 80
+      }
+    ],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "nginx-log-group",
+        "awslogs-region": "eu-central-1",
+        "awslogs-stream-prefix": "nginx"
+      }
+   }
+  }
+]

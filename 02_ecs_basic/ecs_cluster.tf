@@ -15,7 +15,7 @@ module "ecs-cluster" {
 
   health_check_grace_period = "600"
   desired_capacity          = "1"
-  min_size                  = "0"
+  min_size                  = "1"
   max_size                  = "2"
 
   enabled_metrics = [
@@ -34,6 +34,25 @@ module "ecs-cluster" {
   project     = "Something"
   environment = "Staging"
   lookup_latest_ami = "true" # fails if set to false :( (bug)
+}
+
+resource "aws_security_group_rule" "container_instance_egress" {
+  type        = "egress"
+  from_port   = 0
+  to_port     = 0
+  protocol    = "-1"
+  cidr_blocks = ["0.0.0.0/0"]
+
+  security_group_id = "${module.ecs-cluster.container_instance_security_group_id}"
+}
+
+resource "aws_security_group_rule" "container_instance_ingress" {
+  type = "ingress"
+  from_port = 0
+  to_port = 0
+  protocol = "-1"
+  cidr_blocks = ["0.0.0.0/0"]
+  security_group_id = "${module.ecs-cluster.container_instance_security_group_id}"
 }
 
 # https://github.com/anrim/terraform-aws-ecs (cluster + ALB + service definition + task)
