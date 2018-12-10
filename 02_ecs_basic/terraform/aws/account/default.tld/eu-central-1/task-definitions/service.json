@@ -5,7 +5,8 @@
       "value": "KEY"
     }],
     "essential": true,
-    "memoryReservation": null,
+    "memoryReservation": 128,
+    "cpu": 10,
     "image": "nginx:latest",
     "name": "nginx",
     "portMappings": [
