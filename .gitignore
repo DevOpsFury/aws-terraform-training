@@ -13,3 +13,6 @@
 
 # Python virtualenv
 venv
+
+# Vagrant
+.vagrant
