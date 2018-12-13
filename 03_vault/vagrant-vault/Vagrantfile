@@ -44,11 +44,8 @@ Vagrant.configure(2) do |config|
 
     if [[ ! $(grep '/usr/local/bin' /root/.bash_profile) ]]; then
       echo 'export PATH=$PATH:/usr/local/bin' >> /root/.bash_profile
-      echo 'export PATH=$PATH:/usr/local/bin' >> /vagrant/.bash_profile
-      echo 'export VAULT_ADDR="https://$(hostname):8200"' >> /vagrant/.bash_profile
       echo 'export VAULT_ADDR="https://$(hostname):8200"' >> /root/.bash_profile
       echo 'alias l="ls -lah"' >> /root/.bash_profile
-      echo 'alias l="ls -lah"' >> /vagrant/.bash_profile
     fi
 
     cp '/vagrant/vault-notls.hcl' '/etc/vault/vault.hcl'
