@@ -259,3 +259,7 @@ resource "aws_instance" "ssh_host" {
     Name = "SSH bastion"
   }
 }
+
+# ssh-add -l
+# ssh ubuntu@1.2.3.4 -A
+

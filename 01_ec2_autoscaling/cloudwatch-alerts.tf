@@ -49,7 +49,7 @@ resource "aws_cloudwatch_metric_alarm" "memory_utilization_high" {
   }
 
   alarm_description = "Memory Utilization high"
-  alarm_actions     = ["i${aws_autoscaling_policy.scale_up.arn}"]
+  alarm_actions     = ["${aws_autoscaling_policy.scale_up.arn}"]
 }
 
 resource "aws_cloudwatch_metric_alarm" "memory_utilization_low" {
@@ -67,5 +67,5 @@ resource "aws_cloudwatch_metric_alarm" "memory_utilization_low" {
   }
 
   alarm_description = "Memory Utilization low"
-  alarm_actions     = ["i${aws_autoscaling_policy.scale_down.arn}"]
+  alarm_actions     = ["${aws_autoscaling_policy.scale_down.arn}"]
 }
