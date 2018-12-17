@@ -41,6 +41,7 @@ resource "aws_route_table" "public" {
   tags {
     Name = "Public route table"
   }
+
 }
 
 resource "aws_route_table_association" "public" {
@@ -99,7 +100,18 @@ resource "aws_instance" "ssh_host" {
     "${aws_security_group.allow_all_outbound.id}",
   ]
 
+  user_data = <<EOF
+#!/bin/bash
+
+echo "Hello user_data" >> /tmp/userdata.txt
+
+EOF
+
   tags {
     Name = "SSH bastion"
   }
+}
+
+output "SSH_BASTION_IP" {
+  value = "${aws_instance.ssh_host.public_ip}"
 }
