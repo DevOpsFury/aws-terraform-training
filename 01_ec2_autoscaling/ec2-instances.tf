@@ -35,6 +35,14 @@ resource "aws_autoscaling_group" "application" {
 
   load_balancers = ["${aws_elb.default-elb.name}"]
 
+  // "TerminationPolicyTypes": [
+  //      "ClosestToNextInstanceHour",
+  //      "Default",
+  //      "NewestInstance",
+  //      "OldestInstance",
+  //      "OldestLaunchConfiguration"
+  //  ]
+
   termination_policies = ["OldestInstance"]
 
   lifecycle {
