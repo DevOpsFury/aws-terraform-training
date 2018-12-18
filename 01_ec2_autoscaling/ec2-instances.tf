@@ -17,7 +17,7 @@ resource "aws_launch_configuration" "as_conf" {
 
   iam_instance_profile = "${aws_iam_instance_profile.ec2_default.name}"
 
-  associate_public_ip_address = "${var.associate_public_ip_address}"
+  associate_public_ip_address = "false"
 
   lifecycle {
     create_before_destroy = true
