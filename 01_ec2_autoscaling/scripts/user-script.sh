@@ -5,8 +5,8 @@ set -e
 set -x
 
 apt-get update
-apt-get upgrade -y
-apt-get install -y unzip zip
+DEBIAN_FRONTEND=noninteractive apt-get upgrade -y
+DEBIAN_FRONTEND=noninteractive apt-get install -y unzip zip
 
 # Install CloudWatchMonitoringScripts (perl!)
 sudo mkdir -p /opt/cloudwatch
