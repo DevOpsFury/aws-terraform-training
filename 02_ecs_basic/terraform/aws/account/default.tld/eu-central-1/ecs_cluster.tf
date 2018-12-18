@@ -33,7 +33,7 @@ module "ecs-cluster" {
 
   project           = "Something"
   environment       = "Staging"
-  lookup_latest_ami = "true"      # fails if set to false :( (bug)
+  lookup_latest_ami = "true"      // fails if set to false :( (bug)
 }
 
 resource "aws_security_group_rule" "container_instance_egress" {
